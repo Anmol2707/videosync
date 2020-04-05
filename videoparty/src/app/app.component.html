@@ -8,7 +8,7 @@
         <mat-label>Username</mat-label>
         <input id="username_value" matInput placeholder="Ex. Ajit" value="">
       </mat-form-field>
-      <button mat-raised-button type='button' (click)="OnSubmit()">Submit</button>
+      <button mat-raised-button type='button' (click)="OnSubmit()" [disabled]="disabled">Submit</button>
     </form>
   </span>
 </mat-toolbar>
@@ -16,12 +16,16 @@
   <mat-card>
     <mat-card-title>Chat Window</mat-card-title>
       <mat-list>
-        <mat-list-item *ngFor="let name of names">
+        <mat-list-item *ngFor="let message of messageList">
           <mat-icon mat-list-icon>folder</mat-icon>
-          <div mat-line>{{name}}</div>
+          <div mat-line>{{message}}</div>
           <mat-divider></mat-divider>
         </mat-list-item>
     </mat-list>
+    <input [(ngModel)]="newMessage" (keyup)="$event.keyCode == 13 && sendMessage()" />
+    <button (click)="sendMessage()">Send Message</button>
   </mat-card>
+  <div *ngFor="let message of messageList">
+  </div>
 </div>
 <router-outlet></router-outlet>

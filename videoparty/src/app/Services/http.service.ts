@@ -17,6 +17,6 @@ export class HttpService {
 
   submit(userName: Username): Observable<any> {
     const headers = new HttpHeaders().set('content-type', 'application/json');
-    return this.httpService.post<Username>('', JSON.stringify(userName), {headers});
+    return this.httpService.post<Username>('http://localhost:8080/api/userName', JSON.stringify(userName), {headers});
   }
 }

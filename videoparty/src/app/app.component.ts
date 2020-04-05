@@ -1,23 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Username } from './Interfaces/Username';
 import { HttpClient } from '@angular/common/http';
 import { HttpService } from './services/http.service';
+import { ChatService } from './Services/chat.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'videoparty';
   name: Username;
+  disabled: boolean;
+  newMessage: string;
+  messageList: string[] = [];
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService, private chatService: ChatService) {
+    this.disabled = false;
+  }
+
+  ngOnInit() {
+    this.chatService
+      .getMessages()
+      .subscribe((message: string) => {
+        this.messageList.push(message);
+      });
   }
 
   addUsername(user: Username) {
     this.httpService.submit(this.name).subscribe(res => {
-        alert('Data added successfully !! ');
+        this.disabled = true;
       }
       , err => {
         console.log('Error Occured ' + err);
@@ -33,6 +46,9 @@ export class AppComponent {
       this.addUsername(this.name);
     }
 
-
+    sendMessage() {
+      this.chatService.sendMessage(this.newMessage);
+      this.newMessage = '';
+    }
 
 }

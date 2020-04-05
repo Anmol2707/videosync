@@ -12,8 +12,10 @@ import {MatDividerModule} from '@angular/material/divider';
 import { HttpClientModule} from '@angular/common/http';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { FormsModule } from '@angular/forms';
 
-
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 @NgModule({
   declarations: [
     AppComponent
@@ -29,7 +31,9 @@ import {MatButtonModule} from '@angular/material/button';
     MatDividerModule,
     HttpClientModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    SocketIoModule.forRoot(config),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
