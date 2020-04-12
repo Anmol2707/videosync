@@ -14,11 +14,17 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { FormsModule } from '@angular/forms';
+import { MainPageComponent } from './Components/main-page/main-page.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { LoginComponent } from './Components/login/login.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MainPageComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +39,9 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     MatInputModule,
     MatButtonModule,
     SocketIoModule.forRoot(config),
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]
