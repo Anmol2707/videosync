@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Username } from './Interfaces/Username';
+import { Username } from '../../Interfaces/Username';
 import { HttpClient } from '@angular/common/http';
-import { HttpService } from './services/http.service';
-import { ChatService } from './Services/chat.service';
-
+import { HttpService } from '../../services/http.service';
+import { ChatService } from '../../Services/chat.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-main-page',
+  templateUrl: './main-page.component.html',
+  styleUrls: ['./main-page.component.css']
 })
-export class AppComponent implements OnInit {
-  title = 'videoparty';
+export class MainPageComponent implements OnInit {
+
   name: Username;
   disabled: boolean;
   newMessage: string;
